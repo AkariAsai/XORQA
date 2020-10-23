@@ -26,19 +26,23 @@ There are three sub-tasks: [**XOR-Retrieve**](##XOR-Retrieve), [**XOR-EnglishSpa
 
 
 ## Download the Dataset
-You can download the data at the following URLs. The datasets below include question and short answer information only. If you need the long answer information for supervised training of retrievers or reader, please download the [GoldParagraph](##gold-paragraph-data) data. We also ask you to *use Wikipedia 2019-0201 dump*, which can be downloaded the link from [TyDiQA's source data list](https://github.com/google-research-datasets/tydiqa/blob/master/README.md#source-data) for the 7 languages + English.
+You can download the data at the following URLs. 
+
+The datasets below include question and short answer information only. If you need the long answer information for supervised training of retrievers or reader, please download the [GoldParagraph](##gold-paragraph-data) data. 
+
+We also ask you to *use Wikipedia 2019-0201 dump*, which can be downloaded the link from [TyDiQA's source data list](https://github.com/google-research-datasets/tydiqa/blob/master/README.md#source-data) for the 7 languages + English.
 
 ### Data for **XOR** tasks
 For **XOR-Retrieve** and **XOR-English Span**:
-- [train](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_train_retrieve_eng_span.jsonl)
-- [dev](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_retrieve_eng_span.jsonl)
-- [test(Question Only)](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_retrieve_eng_span_q_only.jsonl)
+- [Train data](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_train_retrieve_eng_span.jsonl)
+- [Development data](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_retrieve_eng_span.jsonl)
+- [Test data(Question Only)](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_retrieve_eng_span_q_only.jsonl)
 
 
 For **XOR-Full**:
-- [train](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_train_full.jsonl)
-- [dev](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_full.jsonl)
-- [test (Question Only)](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_full_q_only.jsonl)
+- [Train data](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_train_full.jsonl)
+- [Development data](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_full.jsonl)
+- [Test data(Question Only)](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_full_q_only.jsonl)
 
 ### Additional resources
 #### Gold Paragraph Data
