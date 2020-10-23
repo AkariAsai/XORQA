@@ -26,48 +26,47 @@ There are three sub-tasks: [**XOR-Retrieve**](##XOR-Retrieve), [**XOR-EnglishSpa
 
 
 ## Download the Dataset
-You can download the data at the following URLs. The datasets below include question and short answer information only. If you need the long answer information for supervised training of retrievers, please download the [GoldParagraph](##gold-paragraph-data) data. We also ask you to *use Wikipedia 2019-0201 dump*, which can be downloaded the link from [TyDiQA's source data list](https://github.com/google-research-datasets/tydiqa/blob/master/README.md#source-data) for the 7 languages + English.
+You can download the data at the following URLs. The datasets below include question and short answer information only. If you need the long answer information for supervised training of retrievers or reader, please download the [GoldParagraph](##gold-paragraph-data) data. We also ask you to *use Wikipedia 2019-0201 dump*, which can be downloaded the link from [TyDiQA's source data list](https://github.com/google-research-datasets/tydiqa/blob/master/README.md#source-data) for the 7 languages + English.
 
 ### Data for **XOR** tasks
 For **XOR-Retrieve** and **XOR-English Span**:
-- [link to xor retrieve train]()
-- [link to xor retrieve dev]()
-- [link to xor retrieve test]()
+- [train](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_train_retrieve_eng_span.jsonl)
+- [dev](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_retrieve_eng_span.jsonl)
+- [test(Question Only)](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_retrieve_eng_span_q_only.jsonl)
 
 
 For **XOR-Full**:
-- [link to xor retrieve train]()
-- [link to xor retrieve dev]()
-- [link to xor retrieve test]()
+- [train](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_train_full.jsonl)
+- [dev](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_full.jsonl)
+- [test (Question Only)](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_full_q_only.jsonl)
 
-### Gold Paragraph Data
-The gold paragraph data includes annotated passage answer (gold paragraph) and a short answer (short answer) in the same format as [SQuAD](). As in TyDi QA Gold Passage Task, your directly recycle your SQuAD QA codes. 
+### Additional resources
+#### Gold Paragraph Data
+*Coming soon...*
+- Gold Paragraph data (similar to TyDi GP)
+The gold paragraph data includes annotated passage answers (gold paragraph) and short answers in the same format as [SQuAD](https://rajpurkar.github.io/SQuAD-explorer/). As in TyDi QA Gold Passage Task, you can directly recycle your SQuAD QA codes. 
 
-- The data only with span answers (SQuAD 1.0 format)
-    - [link to xor retrieve train]()
-    - [link to xor retrieve dev]()
-    - [link to xor retrieve test]()
-
-With a slightly different from the original SQuAD format, the data below includes all "long answer only" / "yes-no" questions. Please check the format in [Format for RC task](##format-for-rc-task).
+- Reading Comprehension data with `no answer` and `yes/no`
+With a slightly different from the original SQuAD format, the data includes all "long answer only" & "yes-no" questions, as in NQ and TyDi QA full task. 
 
 
-### Question translation data
-We also make the human annotated 30k question translation data publicly available. As the translation data is only used for annotation, we release the translation for train data only. 
+#### Question translation data
+*Coming soon...*
 
-The translation data for each language pair (English-{Arabic, Bengali, Finnish, Japanese, Korean, Russian, Telugu}) is represented as a pair of text file, in which each line include one sentence corresponding to the translated English question. 
+We also make the human annotated 30k question translation data publicly available. As the translation data is only used for annotation and we do not expect use this *oracle* translation, we release the translation for train data only. 
 
--   question translation data (zip)
+The translation data for each language pair (English-{Arabic, Bengali, Finnish, Japanese, Korean, Russian, Telugu}) is represented as a pair of text file, in which each line include one sentence corresponding to the translated English question, following common MT corpora.
 
 
 ## Building a baseline system
 Our baseline includes: [Dense Passage Retriever](https://github.com/facebookresearch/DPR) ([Karpukhin et al., 2020](https://arxiv.org/abs/2004.04906)), [Path Retriever](https://github.com/AkariAsai/learning_to_retrieve_reasoning_paths) ([Asai et al., 2020](https://arxiv.org/abs/1911.10470)), BM25 (implementations are based on ElasticSearch)+multilingual QA models.
 
-Please see the details of the models and commands to train / evaluate in the [baselines](baselines/) directory.
+Our baseline code and trained models will be released.
 
 ## Evaluation
 To evaluate your modes' predictions on development data, please run the commands below. Please see the details of the prediction file format and make sure your prediction results follow the format. 
 
-You also needs to install MeCab and NLTK before running evaluation -- they are used to tokenization for Retrieve and Full task)
+You also needs to install MeCab and NLTK before running evaluation -- they are used to tokenization for XOR-Retrieve and for evaluations on Japanese answers. 
 
 ```
 pip install mecab-python3
@@ -103,10 +102,11 @@ To evaluate your model's predictions, you need to format the predicted results i
 #### XOR-Retrieve
 **Note**: Our evaluation script evaluate if the correct answers are included in the first 2,000 tokens and 5,000 tokens for R@2kt and R@5kt, respectively. Please make sure the total token numbers of your retrieved document would be larger than those tokens; otherwise your scores might be underestimated. See the detailed definition of those metrics in our paper. 
 
-For XOR-Retrieve, your prediction should be a json file of a dictionary, whose keys are question ids and values are the retrieved documents represented as a list of string.
+The XOR-Retrieve file should be output as follows:
 
 ```
-{"ja_dev_12345": ["Tokyo (東京) is the capital and most populous prefecture of Japan.", "Located at the head of Tokyo Bay, the prefecture forms part of the Kantō region on the central Pacific coast of Japan's main island, Honshu. " ... ]}
+["id": 12345, "lang": "ja, ctxs": ["Tokyo (東京) is the capital and most populous prefecture of Japan.", "Located at the head of Tokyo Bay, the prefecture forms part of the Kantō region on the central Pacific coast of Japan's main island, Honshu. " ... ]
+]
 ```
 
 #### XOR-Full, XOR-English Span
@@ -114,7 +114,7 @@ For those two tasks, your prediction file should be a json file of a dictionary,
 
 e.g.,
 ```
-{"ja_dev_12345": "東京", "ru_dev_67890": "Москва", ...}
+{"12345": "東京", "67890": "Москва", ...}
 ```
 
 
@@ -126,8 +126,8 @@ Please make sure you include the following information in the email.
 - test prediction file in our [prediction file format](#prediction-file-format)
 - the task name 
 - the name of the model
-- whether you use external black box API (e.g., Google Translate / Google Custom Search / Bing Search) which cannot reproduce on your side. To coordinate open research, we encourage you to use reproducible components, and the system with those external (unreproducible) components will be populated below the entries w/o APIs. 
-- [optional] the institution
+- whether you use external black box API (e.g., Google Translate / Google Custom Search / Bing Search) which cannot be reproduced on your side. To coordinate open research, we encourage you to use reproducible components, and the system with those external (unreproducible) components will be populated below the entries w/o APIs. 
+- [optional] the institution. You can update those information later. 
 - [optional] link to the paper and code. You can update those information later. 
 
 
