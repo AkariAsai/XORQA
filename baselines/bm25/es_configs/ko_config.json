@@ -1,0 +1,20 @@
+{
+    "settings": {
+        "index": {
+            "analysis": {
+                "tokenizer": {
+                    "nori_user_dict": {
+                        "type": "nori_tokenizer",
+                        "mode": "search"
+                    }
+                },
+                "analyzer": {
+                    "my_analyzer": {
+                        "type": "custom",
+                        "tokenizer": "nori_user_dict"
+                    }
+                }
+            }
+        }
+    }
+}

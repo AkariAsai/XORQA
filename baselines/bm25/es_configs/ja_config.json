@@ -1,0 +1,20 @@
+{
+    "settings": {
+        "index": {
+            "analysis": {
+                "tokenizer": {
+                    "kuromoji_user_dict": {
+                        "type": "kuromoji_tokenizer",
+                        "mode": "search"
+                    }
+                },
+                "analyzer": {
+                    "my_analyzer": {
+                        "type": "custom",
+                        "tokenizer": "kuromoji_user_dict"
+                    }
+                }
+            }
+        }
+    }
+}
