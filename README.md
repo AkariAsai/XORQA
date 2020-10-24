@@ -46,26 +46,34 @@ For **XOR-Full**:
 
 ### Additional resources
 #### Gold Paragraph Data
-*Coming soon...*
-- Gold Paragraph data (similar to TyDi GP)
+
+- [Gold Paragraph data (similar to TyDi GP)](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/tydi_xor_gp.zip):
 The gold paragraph data includes annotated passage answers (gold paragraph) and short answers in the same format as [SQuAD](https://rajpurkar.github.io/SQuAD-explorer/). As in TyDi QA Gold Passage Task, you can directly recycle your SQuAD QA codes. 
 
-- Reading Comprehension data with `no answer` and `yes/no`
+- [Reading Comprehension data](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/tydi_xor_rc_yes_no_unanswerable.zip) with `no answer` and `yes/no`:
 With a slightly different from the original SQuAD format, the data includes all "long answer only" & "yes-no" questions, as in NQ and TyDi QA full task. 
 
 
 #### Question translation data
-*Coming soon...*
-
 We also make the human annotated 30k question translation data publicly available. As the translation data is only used for annotation and we do not expect use this *oracle* translation, we release the translation for train data only. 
 
 The translation data for each language pair (English-{Arabic, Bengali, Finnish, Japanese, Korean, Russian, Telugu}) is represented as a pair of text file, in which each line include one sentence corresponding to the translated English question, following common MT corpora.
+
+The list of the links to parallel corpora (`L_i`-to-English) is below:
+
+- [ar-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/ar-en.zip)
+- [bn-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/bn-en.zip)
+- [fi-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/fi-en.zip)
+- [ja-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/ja-en.zip)
+- [ko-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/ko-en.zip)
+- [ru-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/ru-en.zip)
+- [fi-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/fi-en.zip)
 
 
 ## Building a baseline system
 Our baseline includes: [Dense Passage Retriever](https://github.com/facebookresearch/DPR) ([Karpukhin et al., 2020](https://arxiv.org/abs/2004.04906)), [Path Retriever](https://github.com/AkariAsai/learning_to_retrieve_reasoning_paths) ([Asai et al., 2020](https://arxiv.org/abs/1911.10470)), BM25 (implementations are based on ElasticSearch)+multilingual QA models.
 
-Our baseline code and trained models will be released.
+Please see [baselines/README.md](baselines/README.md) for more information.
 
 ## Evaluation
 To evaluate your modes' predictions on development data, please run the commands below. Please see the details of the prediction file format and make sure your prediction results follow the format. 
