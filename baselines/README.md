@@ -1,12 +1,12 @@
 # Baselines for XOR QA
 
-This repository contains the information about the baselines used in the original XOR QA paper. 
+This repository contains the information about the baselines used in the original XOR QA paper. Our trained models and detailed instructions will be available.
 
 ## List of baselines
 ### Retriever 
 In our experiment, we have tried three different models (term-based, term-based model followed by neural paragraph ranker, end-to-end neural retriever). The codes for each baseline is available below:
 
-- BM25: BWe use ElasticSearch's python client to retrieve documents in English or in target languages. code is available [here](https://github.com/AkariAsai/XORQA/baselines/bm25/README.md).
+- BM25: BWe use ElasticSearch's python client to retrieve documents in English or in target languages. code is available [here](bm25).
 - [Dense Passage Retriever](https://github.com/facebookresearch/DPR) ([Karpukhin et al., 2020](https://arxiv.org/abs/2004.04906)): 
 - [Path Retriever](https://github.com/AkariAsai/learning_to_retrieve_reasoning_paths) ([Asai et al., 2020](https://arxiv.org/abs/1911.10470))
 
