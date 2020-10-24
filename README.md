@@ -6,7 +6,7 @@
 [**Paper**](https://arxiv.org/abs/2010.11856) | [**Changelog**](CHANGELOG.md)
 
 ## Introduction
-**XOR-TyDi QA** is the first cross-lingual open-retrieval question answering (**XOR QA**) dataset. It consists of questions written by information-seeking native speakers in 7 typologically diverse languages and answer annotations that are retrieved from multilingual Wikipedia collections. 
+**XOR-TyDi QA** brings together for the first time **information-seeking questions, open-retrieval QA, and multilingual QA** to create a **multilingual open-retrieval QA dataset that enables cross-lingual answer retrieval**. It consists of questions written by information-seeking native speakers in 7 typologically diverse languages and answer annotations that are retrieved from multilingual document collections. 
 
 ## The Tasks
 There are three sub-tasks: [**XOR-Retrieve**](##XOR-Retrieve), [**XOR-EnglishSpan**](##XOR-EnglishSpan), and [**XOR-Full**](#XOR-Full).
