@@ -67,7 +67,7 @@ The list of the links to parallel corpora (`L_i`-to-English) is below:
 - [ja-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/ja-en.zip)
 - [ko-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/ko-en.zip)
 - [ru-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/ru-en.zip)
-- [fi-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/fi-en.zip)
+- [te-en.zip](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/te-en.zip)
 
 
 ## Building a baseline system
