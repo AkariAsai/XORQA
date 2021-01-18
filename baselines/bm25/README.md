@@ -1,6 +1,6 @@
 # BM25 based retriever
 
-This director contains the codes for BM2 based retriever for monolingual document retrieval. We use ElasticSearch (ES) Python client as ES supports diverse set of languages, and 6 out of 7 target languages of TyDi-XOR QA are covered by Elastic Search.
+This directory contains the codes for BM25 based retriever for monolingual document retrieval. We use ElasticSearch (ES) Python client as ES supports diverse set of languages, and 6 out of 7 target languages of TyDi-XOR QA are covered by Elastic Search.
 
 ## Elastic Search Insolation
 To run ElasticSearch in your local environment, you need to install ElasticSearch first. We install ES by running the scripts provided by [CLIReval](https://github.com/ssun32/CLIReval) library (Sun et al., ACL demo 2020). 
