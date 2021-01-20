@@ -11,7 +11,7 @@ wget https://nlp.cs.washington.edu/xorqa/XORQA_site/data/models/checkpoints_mult
 # download embeddings
 mkdir embeddings_multi
 cd embeddings_multi
-for i in 0 1 2 3 4 5;
+for i in 1 2 3 4 5;
 do 
   wget https://nlp.cs.washington.edu/xorqa/XORQA_site/data/models/embeddings_multi/wiki_emb_$i 
 done
