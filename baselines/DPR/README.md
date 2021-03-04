@@ -101,7 +101,34 @@ python train_reader.py \
 ```
 
 ### Training
-For the details of the model training, please refer the instructions in [the original DPR repository](https://github.com/facebookresearch/DPR). We'll add training commands and train data we used soon.
+For the details of the model training, please refer the instructions in [the original DPR repository](https://github.com/facebookresearch/DPR).
+
+#### Training data
+You can download the training data [here](https://drive.google.com/drive/folders/1JtHDWS6kW-pkzHZZ8P6F723pAe9CT1Tc?usp=sharing). 
+
+The `positive_ctxs` are the gold paragraphs we annotated, and we split the gold paragraphs into 100 word length as in the original DPR. When the gold paragraph can be splitted into more than one chunks, we map the short answer span locations and choose the chunk where the original short answer is extracted as the `positive_ctxs`. The `hard_negative_ctxs` are selected by randomly sampling one of the top 5 paragraphs selected by our BERT based paragraph ranker, without answer strings. 
+
+During training, we use one `positive_ctxs` and one `hard_negative_ctxs` in addition to the in-batch negative context following the original DPR training. 
+
+For the definition of the `hard_negative_ctxs`, `negative_ctxs` and `positive_ctxs` of DPR, please see [the detailed discussions](https://github.com/facebookresearch/DPR/issues/42) in the original DPR repository. 
+
+#### Training
+To train DPR retrievers, (a) we first fine-tune the model on NQ train data which can be downloaded by following instructions of the original DPR repository. Then, (b) we fine-tune the model using our data, setting the `--model_file` option to the model file path from the initial step (a) (i.e., dpr_multilingual_checkpoint_nq/best.cp in the command below). 
+
+
+**Note:** please set the `--restart` option during (b). As reported in the original DPR repository, when you start fine-tuning from `--model_file`, the learning rate is stick to 0.0, and I made small code changes to avoid this. 
+
+e.g., 
+````
+python -m torch.distributed.launch --nproc_per_node=8 train_dense_encoder.py \
+--max_grad_norm 2.0 --encoder_model_type hf_bert --pretrained_model_cfg bert-base-multilingual-uncased \
+--model_file "dpr_multilingual_checkpoint_nq/best.cp" --seed 12345 \
+--sequence_length 256 --warmup_steps 1237 --batch_size 12 --do_lower_case \
+--train_file "xorqa_dpr_data_query=L_hard_negative=1/dpr_train_data.json" \
+--dev_file  "xorqa_dpr_data_query=L_hard_negative=1/dpr_dev_data.json" \
+-output_dir multilingual_dpr --learning_rate 2e-05 --num_train_epochs 40 \
+--dev_batch_size 12 --val_av_rank_start_epoch 10 --restart
+````
 
 
 ### Results
