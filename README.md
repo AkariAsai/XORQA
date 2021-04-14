@@ -3,7 +3,7 @@
 [**Tasks**](#the-tasks) | [**Download**](#download-the-dataset) |
 [**Baselines**](#building-a-baseline-system) | [**Evaluation**](#evaluation) |
 [**Website and Leader board**](https://nlp.cs.washington.edu/xorqa/) |
-[**Paper**](https://arxiv.org/abs/2010.11856) | [**Changelog**](CHANGELOG.md)
+[**Paper**](https://arxiv.org/abs/2010.11856) | [**Updates**](#updates)
 
 ## Introduction
 **XOR-TyDi QA** brings together for the first time **information-seeking questions, open-retrieval QA, and multilingual QA** to create a **multilingual open-retrieval QA dataset that enables cross-lingual answer retrieval**. It consists of questions written by information-seeking native speakers in 7 typologically diverse languages and answer annotations that are retrieved from multilingual document collections. 
@@ -30,19 +30,22 @@ You can download the data at the following URLs.
 
 The datasets below include question and short answer information only. If you need the long answer information for supervised training of retrievers or reader, please download the [GoldParagraph](##gold-paragraph-data) data. 
 
-We also ask you to *use Wikipedia 2019-0201 dump*, which can be downloaded the link from [TyDiQA's source data list](https://github.com/google-research-datasets/tydiqa/blob/master/README.md#source-data) for the 7 languages + English.
+We also ask you to *use Wikipedia 2019-0201 dump*, which can be downloaded the link from [TyDiQA's source data list](https://github.com/google-research-datasets/tydiqa/blob/master/README.md#source-data) for the 7 languages + English. 
+
+**Note (April 12, 2021):** Please note that we modified the XOR-TyDi QA data, and released a new version as XOR-TyDi (v1.1). All of the data you can download are from here is **v1.1** and the leaderboard results are based on **v1.1**. 
+
 
 ### Data for **XOR** tasks
 For **XOR-Retrieve** and **XOR-English Span**:
 - [Train data](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_train_retrieve_eng_span.jsonl)
-- [Development data](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_retrieve_eng_span.jsonl)
-- [Test data(Question Only)](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_retrieve_eng_span_q_only.jsonl)
+- [Development data](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_retrieve_eng_span_v1_1.jsonl)
+- [Test data(Question Only)](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_retrieve_eng_span_q_only_v1_1.jsonl)
 
 
 For **XOR-Full**:
 - [Train data](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_train_full.jsonl)
-- [Development data](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_full.jsonl)
-- [Test data(Question Only)](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_full_q_only.jsonl)
+- [Development data](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_full_v1_1.jsonl)
+- [Test data(Question Only)](https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_full_q_only_v1_1.jsonl)
 
 ### Additional resources
 #### Gold Paragraph Data
@@ -149,6 +152,10 @@ Please make sure you include the following information in the email.
 - If you plan to have your model officially evaluated, please plan 1 weeks in advance to allow sufficient time for your model results to be on the leaderboard. 
 
 
+## Updates
+- **[October 23, 2020]**: We released the initial version of TyDi-XOR dataset and preprint paper. 
+- **[March 4, 2021]**: We released codes and trained models. Please see the details at [baselines](https://github.com/AkariAsai/XORQA/tree/main/baselines).
+- **[April 13, 2021]**: Our papaer's camera-ready version is now available at [Arxiv](https://arxiv.org/abs/2010.11856). We also did some minor changes to XOR-TyDi's evaluation data and released new version of TyDi-XOR as TYDi-XOR v1.1. The changes are: (1) we filtered out a few yes/no answer annotations (e.g., yes/no answers to factoid questions) that are potentially incorrect, and (2) we added some answer translations that are not appropriately included in previous XOR QA's full evaluations due to postprocessing issues.  
 
 ## Citation and Contact
 If you find this codebase is useful or use in your work, please cite our paper.
