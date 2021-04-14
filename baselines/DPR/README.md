@@ -19,16 +19,11 @@ bash download_trans_test_models.sh
 ```sh
 bash download_multilingual_models.sh
 ```
-**Note:** We found that our previous multilingual DPR retriever was under-tuned. After re-training multilingual models, we get higher scores (See [Results](###Results)). You can download the newly fine-tuned models by running the script.
-
-```
-bash download_multilingual_models_v2.sh
-```
 
 Also, please download the preprocessed wikipedia file (a `tsv` file, where each line includes a 100-token length document chunk of English Wikipedia).
 
 ```
-wget https://nlp.cs.washington.edu/xorqa/XORQA_site/data/psgs_w100.tsv
+wget https://nlp.cs.washington.edu/xorqa/XORQA_site/data/models/enwiki_20190201_w100.tsv
 ```
 
 ### Evaluations
@@ -129,29 +124,3 @@ python -m torch.distributed.launch --nproc_per_node=8 train_dense_encoder.py \
 -output_dir multilingual_dpr --learning_rate 2e-05 --num_train_epochs 40 \
 --dev_batch_size 12 --val_av_rank_start_epoch 10 --restart
 ````
-
-
-### Results
-The macro-averaged scores (the scored averaged over languages) on each task listed below.
-
-#### XOR-retrieve
-
-| Model  | recall@2kt | recall@5kt |
-| ------------- | ------------- | ------------- |
-| Translate-test w/ Google Translate | 59.7  | 66.9  |
-| Translate-test w/ Our NMT |  41.0 |  48.8 |
-| Multilingual (paper) | 36.4  |  44.6 |
-| Multilingual (multilingual_v2) | 39.9  | 49.4 |
-
-#### XOR-EngSpan
-
-| Model  | F1 | EM|
-| ------------- | ------------- | ------------- |
-| Translate-test w/ Google Translate | 30.4 | 23.7  |
-| Translate-test w/ Our NMT | 17.7  |  13.4 |
-| Multilingual (paper) | 13.2  |  9.7 |
-| Multilingual (multilingual_v2) | 19.1  | 14.1 |
-
-**Note (as of 1/2021)**: As shown in the table, we have two different multilingual model scores (`multilingual_v2` and `paper`). 
-We have found that our multilingual DPR model was under-tuned and after re-training, we got the scores that are better than the reported paper. We'll update the numbers on the paper. 
-We appreciate that Tiannan gave us a heads up.
