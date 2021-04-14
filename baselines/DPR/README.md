@@ -34,7 +34,7 @@ wget https://nlp.cs.washington.edu/xorqa/XORQA_site/data/psgs_w100.tsv
 ### Evaluations
 This section explains how to reproduce the results of our baseline models. 
 
-If you just want to take a look at the actual prediction results of our baselines, you can download the prediction results (for XOR-Retrieve and XOR-EngSpan tasks) on the dev set [here (google drive)](https://drive.google.com/drive/folders/14WI97TAfQ23CjtKSZ-LU8tQTtCFCfal6?usp=sharing).
+If you just want to take a look at the actual prediction results of our baselines, you can download the prediction results on the dev set [here (google drive)](https://drive.google.com/drive/folders/14WI97TAfQ23CjtKSZ-LU8tQTtCFCfal6?usp=sharing).
 
 #### 0. Download the input data file (For Translate-test baseline)
 To reproduce the results of the translate-test baselines without running MT systems by yourself, you can use our translation results obtained by Google Translate or our own NMT systems from [this link](https://drive.google.com/file/d/1KyCC_8PjOjvQRjdQFvc3_ufirT7s7LaB/view?usp=sharing).
