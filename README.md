@@ -154,7 +154,7 @@ Please make sure you include the following information in the email.
 
 ## Updates
 - **[October 23, 2020]**: We released the initial version of TyDi-XOR dataset and preprint paper. 
-- **[March 4, 2021]**: We released codes and trained models. Please see the details at [baselines](https://github.com/AkariAsai/XORQA/tree/main/baselines).
+- **[January 18, 2021]**: We released codes and trained models. Please see the details at [baselines](https://github.com/AkariAsai/XORQA/tree/main/baselines).
 - **[April 13, 2021]**: Our papaer's camera-ready version is now available at [Arxiv](https://arxiv.org/abs/2010.11856). We also did some minor changes to XOR-TyDi's evaluation data and released new version of TyDi-XOR as TYDi-XOR v1.1. The changes are: (1) we filtered out a few yes/no answer annotations (e.g., yes/no answers to factoid questions) that are potentially incorrect, and (2) we added some answer translations that are not appropriately included in previous XOR QA's full evaluations due to postprocessing issues.  
 
 ## Citation and Contact
