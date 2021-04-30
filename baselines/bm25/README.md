@@ -45,7 +45,7 @@ python build_es.py --db_path /path/to/your/db --lcode [language_code] --config_f
 
 e.g., to build an index for Bengali using the `bn_wikipedia_20190201.db`, run the command below.
 ```
-python build_ese.py --db_path bn_wikipedia_20190201.db --lcode bn --config_file_path es_configs/bn_config.json --port 9200 --index_prefix wiki_20190201
+python build_es.py --db_path bn_wikipedia_20190201.db --lcode bn --config_file_path es_configs/bn_config.json --port 9200 --index_prefix wiki_20190201
 ```
 
 **Note**: We follow the basic configurations for each language analyzer & tokenizer, which may not be fully optimized. 
