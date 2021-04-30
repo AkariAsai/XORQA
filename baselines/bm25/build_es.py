@@ -16,10 +16,7 @@ def build_index(index_prefix, db_path, lcode, es_index_settings, port=9200):
     index_name = "{0}_{1}".format(index_prefix, lcode)
     if es.indices.exists(index=index_name):
         es.indices.delete(index=index_name)
-    # FIXME: update for Japanese data
     index_settings = es_index_settings
-    print(type(index_settings))
-    print(index_settings.keys())
 
     es.indices.create(index=index_name, body={"settings": index_settings["settings"]})
     # populate index
@@ -44,7 +41,7 @@ def build_index(index_prefix, db_path, lcode, es_index_settings, port=9200):
                     print(f'Unable to load document {para_title_id}.')
 
     n_records = es.count(index=index_name)['count']
-    print(f'Succesfully loaded {n_records} into {index_name}')
+    print(f'Successfully loaded {n_records} into {index_name}')
     return es
 
 def search_es(es_obj, index_name, question_text, n_results=5):
