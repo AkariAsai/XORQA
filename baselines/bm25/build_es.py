@@ -7,25 +7,21 @@ import re
 import json
 from tqdm import tqdm
 
-
-def build_index(db_path, lcode, es_index_settings, port=9200, overwrite=False):
+def build_index(index_prefix, db_path, lcode, es_index_settings, port=9200):
     db = DocDB(db_path)
 
     # initialize the elastic search
     config = {'host': 'localhost', 'port': port}
     es = Elasticsearch([config])
-    index_name = "wikipedia_search_test_{}".format(lcode)
+    index_name = "{0}_{1}".format(index_prefix, lcode)
     if es.indices.exists(index=index_name):
-        if overwrite is True:
-            es.indices.delete(index=index_name)
-        else:
-            print("index {} have already been created! Please set overwrite True or use different index name.".format(
-                index_name))
-
+        es.indices.delete(index=index_name)
+    # FIXME: update for Japanese data
     index_settings = es_index_settings
+    print(type(index_settings))
+    print(index_settings.keys())
 
-    es.indices.create(index=index_name, body={
-                      "settings": index_settings["settings"]})
+    es.indices.create(index=index_name, body={"settings": index_settings["settings"]})
     # populate index
     # load DB and index in Elastic Search
     es.ping()
@@ -39,35 +35,31 @@ def build_index(db_path, lcode, es_index_settings, port=9200, overwrite=False):
             paragraphs = section["paragraphs"]
             title = doc_id.split("_0")[0]
             for para_idx, para in enumerate(paragraphs):
-                para_title_id = "title:{0}_parentSection:{1}_sectionName:{2}_sectionIndex:{3}".format(
-                    title, parent_section_name, section_name, para_idx)
+                para_title_id = "title:{0}_parentSection:{1}_sectionName:{2}_sectionIndex:{3}".format(title, parent_section_name, section_name, para_idx)
                 rec = {"document_text": para, "document_title": para_title_id}
                 try:
-                    index_status = es.index(
-                        index=index_name, id=count, body=rec)
+                    index_status = es.index(index=index_name, id=count, body=rec)
                     count += 1
                 except:
                     print(f'Unable to load document {para_title_id}.')
 
     n_records = es.count(index=index_name)['count']
-    print(f'Successfully loaded {n_records} into {index_name}')
+    print(f'Succesfully loaded {n_records} into {index_name}')
     return es
-
 
 def search_es(es_obj, index_name, question_text, n_results=5):
     # construct query
     query = {
-        'query': {
-            'match': {
-                'document_text': question_text
+            'query': {
+                'match': {
+                    'document_text': question_text
+                    }
+                }
             }
-        }
-    }
-
+    
     res = es_obj.search(index=index_name, body=query, size=n_results)
-
+    
     return res
-
 
 def main():
     parser = argparse.ArgumentParser()
@@ -79,15 +71,14 @@ def main():
                         help='path to the congig file')
     parser.add_argument('--port', type=int, required=True,
                         help='path to the congig file')
+    parser.add_argument('--index_prefix', type=str, required=True,
+                        help='path to the congig file')
 
     args = parser.parse_args()
     question_text = "What did Ron Paul majored in college?"
-    es = build_index(args.db_path, args.lcode, json.load(
-        open(args.config_file_path)), port=args.port)
-    res = search_es(es_obj=es, index_name="wikipedia_search_test_new_{}".format(
-        args.lcode), question_text=question_text, n_results=10)
+    es = build_index(args.index_prefix, args.db_path, args.lcode, json.load(open(args.config_file_path)), port=args.port)
+    res = search_es(es_obj=es, index_name="{0}_{1}".format(args.index_prefix, args.lcode), question_text=question_text, n_results=10)
     print(res)
-
 
 if __name__ == '__main__':
     main()

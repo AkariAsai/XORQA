@@ -1,7 +1,6 @@
 from elasticsearch import Elasticsearch
 import argparse
 import os
-from utils import get_analyzer
 from doc_db import DocDB
 import re
 from tqdm import tqdm
