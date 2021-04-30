@@ -158,13 +158,23 @@ Please make sure you include the following information in the email.
 - **[April 13, 2021]**: Our papaer's camera-ready version is now available at [Arxiv](https://arxiv.org/abs/2010.11856). We also did some minor changes to XOR-TyDi's evaluation data and released new version of TyDi-XOR as TYDi-XOR v1.1. The changes are: (1) we filtered out a few yes/no answer annotations (e.g., yes/no answers to factoid questions) that are potentially incorrect, and (2) we added some answer translations that are not appropriately included in previous XOR QA's full evaluations due to postprocessing issues.  
 
 ## Citation and Contact
-If you find this codebase is useful or use in your work, please cite our paper.
+If you find this codebase is useful or use the data in your work, please cite our paper.
 
 ```
-@article{xorqa,
-    title   = {XOR QA: Cross-lingual Open-Retrieval Question Answering},
-    author  = {Akari Asai and Jungo Kasai and Jonathan H. Clark and Kenton Lee and Eunsol Choi and Hannaneh Hajishirzi}
-    year    = {2020}
+@inproceedings{xorqa,
+    title   = {{XOR} {QA}: Cross-lingual Open-Retrieval Question Answering},
+    author  = {Akari Asai and Jungo Kasai and Jonathan H. Clark and Kenton Lee and Eunsol Choi and Hannaneh Hajishirzi},
+    booktitle={NAACL-HLT},
+    year    = {2021}
+}
+```
+If you use TyDi-XOR QA data, please also make sure to cite the original TyDi QA paper, which we built TyDI-XOR off of:
+```
+@article{tydiqa,
+title   = {TyDi QA: A Benchmark for Information-Seeking Question Answering in Typologically Diverse Languages},
+author  = {Jonathan H. Clark and Eunsol Choi and Michael Collins and Dan Garrette and Tom Kwiatkowski and Vitaly Nikolaev and Jennimaria Palomaki}
+journal = {TACL},
+year    = {2020}
 }
 ```
 
