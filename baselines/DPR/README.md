@@ -34,6 +34,8 @@ If you just want to take a look at the actual prediction results of our baseline
 #### 0. Download the input data file (For Translate-test baseline)
 To reproduce the results of the translate-test baselines without running MT systems by yourself, you can use our translation results obtained by Google Translate or our own NMT systems from [this link](https://drive.google.com/file/d/1JzlNDijDZmDlT42ABVJK53gwk7_mKHGt/view?usp=sharing).
 
+**[update: June 3]**: We've also released the NMT predictions for test [here](https://drive.google.com/file/d/1-A8FNJUoCWXyEXK8KiCk8DjxwTZThKCl/view?usp=sharing). Note that these files only include the questions, and we do not release the answers for the test set. 
+
 The files follow the original XOR QA data file, and each `question` is translated by a machine translation system from the original language to English.
 
 
